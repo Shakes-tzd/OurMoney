@@ -1,0 +1,362 @@
+/* Base styles and variables */
+:root {
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --primary-color: #4a9eff;
+    --error-color: #ff4a4a;
+    --success-color: #4aff4a;
+    --card-bg: #2d2d2d;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --border-radius: 0.5rem;
+}
+
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Container responsiveness */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-md);
+}
+
+/* Budget card responsiveness */
+.budget-card {
+    background: var(--card-bg);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-lg);
+    width: 100%;
+}
+
+.budget-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+    .budget-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Form responsiveness */
+.grid-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    margin: var(--spacing-lg) 0;
+}
+
+@media (min-width: 768px) {
+    .grid-form {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+/* Table responsiveness */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: var(--spacing-md) 0;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+}
+
+.table {
+    width: 100%;
+    min-width: 650px; /* Prevents squishing */
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table th,
+.table td {
+    padding: var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid #444;
+    white-space: nowrap;
+}
+
+.table td:nth-child(5),
+.table td:nth-child(6) {
+    white-space: normal;
+}
+
+/* Improved touch targets for mobile */
+.editable-cell {
+    min-height: 44px;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+}
+
+/* Inputs and buttons */
+input[type="text"],
+input[type="number"],
+textarea,
+select,
+button {
+    min-height: 44px;
+    padding: var(--spacing-md);
+    border: 1px solid #444;
+    border-radius: var(--border-radius);
+    background: var(--background-color);
+    color: var(--text-color);
+    width: 100%;
+    font-size: 16px;
+}
+
+input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    margin: 10px;
+}
+
+.button-primary,
+.button-error {
+    min-height: 44px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button-primary {
+    background: var(--primary-color);
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.button-error {
+    background: var(--error-color);
+    color: var(--text-color);
+    padding: var(--spacing-sm) var(--spacing-md);
+}
+
+/* Status text */
+.text-error { color: var(--error-color); }
+.text-success { color: var(--success-color); }
+
+/* Empty state responsive */
+.empty-state {
+    padding: var(--spacing-lg);
+    text-align: center;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    margin: var(--spacing-lg) 0;
+}
+
+/* Budget value styles */
+.budget-value {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    .budget-value {
+        font-size: 1.5rem;
+    }
+}
+
+/* Category headers */
+.category-header {
+    background-color: var(--card-bg);
+    color: var(--primary-color);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: var(--spacing-md);
+}
+
+/* Mobile Safari fixes */
+@supports (-webkit-touch-callout: none) {
+    input,
+    select,
+    textarea {
+        padding: var(--spacing-md);
+    }
+    @media (max-width: 768px) {
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            font-size: 16px !important;
+        }
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #1a1a1a;
+        --card-bg: #2d2d2d;
+        --text-color: #ffffff;
+    }
+}
+
+/* Loading state */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Focus states */
+:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Scrollbar styles */
+.table-container {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.table-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.modal.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 500px;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.modal-close:hover {
+    opacity: 1;
+}
+
+.modal-form {
+    padding: 1rem;
+    display: grid;
+    gap: 1rem;
+}
+
+/* Shopping list card styles */
+.shopping-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.category-section {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+}
+
+.category-title {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #444;
+}
+
+.item-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.item-card.found-item {
+    opacity: 0.6;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.card-header input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+}
+
+.card-header h4 {
+    margin: 0;
+    flex: 1;
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.card-body p {
+    margin: 0.5rem 0;
+}

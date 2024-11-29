@@ -1,0 +1,20 @@
+[project]
+name = "ourmoney"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "ipykernel>=6.29.5",
+    "pydantic>=2.10.2",
+    "python-fasthtml>=0.10.0",
+    "rich>=13.9.4",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.3",
+]
+
+[tool.pytest.ini_options]
+pythonpath = "src"
